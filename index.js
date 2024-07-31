@@ -26,4 +26,4 @@ app.get("/", function(req , res){
     res.render("index");
 });
 
-server.listen(PORT);
+server.listen(PORT || '3010');
