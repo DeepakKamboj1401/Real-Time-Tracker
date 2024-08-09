@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://deepakkamboj:xkq32kDuQiHAeQ4D@realtimetracker.srs14d1.mongodb.net/?retryWrites=true&w=majority&appName=RealTimeTracker");
+mongoose.connect("mongodb+srv://deepakkambojprog:mpl0PWF4V6BH3lEK@backenddb.dqc9e.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB");
 
 const userSchema = mongoose.Schema({
     name : String,
