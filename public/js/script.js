@@ -22,6 +22,7 @@ if(navigator.geolocation){
 
 }
 
+
 const map = L.map("map").setView([0 , 0], 16);
 
 const StreetMap = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -44,7 +45,21 @@ socket.on("receive-location", (data) => {
         markers[id].setLatLng([latitude , longitude]);
     }
     else{
-        markers[id] = L.marker([latitude , longitude]).addTo(map);
+        // markers[id] = L.marker([latitude , longitude]).addTo(map);
+
+        function CreateMarker(latitude, longitude, name){
+            const Marker = L.marker([latitude , longitude]).addTo(map);
+
+            Marker.bindPopup(`${name}`);
+
+            Marker.on("click" , function(Error){
+                this.openPopup();
+            });
+
+            return Marker;
+        }
+
+        markers[id] = CreateMarker(latitude, longitude, "Hey, I'm Here!");
     }
 });
 
