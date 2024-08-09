@@ -48,9 +48,11 @@ app.post("/SignIn" , async (Request , Response) => {
     if(user){
         bcrypt.compare(Password , user.password , (Error , result) => {
             if(result){
-                Response.cookie("Token" , user.name);
-
-                Response.redirect("/Map");
+                JWT.sign({email : Email}, "shhhhhhh", {expiresIn : "1h"}, (Error , Token) => {
+                    Response.cookie("Token" , Token);
+    
+                    Response.redirect("/Map");
+                })
             }
             else Response.redirect("/");
         })
@@ -71,8 +73,11 @@ app.post("/CreateAccount" , (Request , Response) => {
                 password : hash
             })
 
-            Response.cookie("Token" , Name);
-            Response.redirect("/Map");
+            JWT.sign({email : Email}, "shhhhhhh", {expiresIn : "1h"}, (Error , Token) => {
+                Response.cookie("Token" , Token);
+
+                Response.redirect("/Map");
+            })
         })
     })
 })
